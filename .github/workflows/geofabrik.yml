@@ -61,11 +61,16 @@ jobs:
           merge-multiple: true
       - name: Zloz pliki lotnisk
         run: python zloz.py "wyciete/*.geojsonseq"
+      - name: Paczka calego swiata (jeden plik do pobrania w aplikacji)
+        run: |
+          mkdir -p swiat && rm -f swiat/lotniska.zip
+          cd osm && zip -0 -q ../swiat/lotniska.zip *.json.gz _postep.json && cd ..
+          ls -la swiat
       - name: Zapisz w repozytorium
         run: |
           git config user.name "nekrovia-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A osm
+          git add -A osm swiat
           git commit -qm "Lotniska OSM z Geofabrik: caly swiat" || exit 0
           git pull --rebase -q || true
           git push

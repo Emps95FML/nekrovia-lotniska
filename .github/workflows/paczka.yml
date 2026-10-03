@@ -1,0 +1,26 @@
+name: Paczka calego swiata
+
+# z gotowych plikow osm/ robi jeden plik swiat/lotniska.zip (pobieranie wszystkich lotnisk naraz w aplikacji)
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  paczka:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Spakuj
+        run: |
+          mkdir -p swiat && rm -f swiat/lotniska.zip
+          cd osm && zip -0 -q ../swiat/lotniska.zip *.json.gz _postep.json && cd ..
+          ls -la swiat
+      - name: Zapisz
+        run: |
+          git config user.name "nekrovia-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A swiat
+          git commit -qm "Paczka calego swiata (lotniska.zip)" || exit 0
+          git push
