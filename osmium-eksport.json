@@ -1,0 +1,12 @@
+{
+    "attributes": {},
+    "format_options": {},
+    "linear_tags": [
+        "aeroway=taxiway", "aeroway=taxilane", "aeroway=parking_position", "aeroway=gate", "aeroway=holding_position"
+    ],
+    "area_tags": [
+        "aeroway=aerodrome", "aeroway=apron", "aeroway=terminal", "aeroway=hangar", "aeroway=helipad",
+        "aeroway=deicing_pad", "aeroway=tower", "aeroway=control_tower", "aeroway=stopway", "aeroway=blast_pad",
+        "aeroway=runway", "area=yes"
+    ]
+}
